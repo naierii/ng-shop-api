@@ -12,4 +12,4 @@ const featuredProductSchema = new Schema({
     prevPrice: { type: Number || null },
     image: { type: String, required: true },
 });
-exports.default = mongoose_1.default.model('featuredProduct', featuredProductSchema);
+exports.default = mongoose_1.default.model('FeaturedProduct', featuredProductSchema);

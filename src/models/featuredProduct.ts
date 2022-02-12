@@ -10,4 +10,4 @@ const featuredProductSchema = new Schema({
   image: {type: String, required: true},
 })
 
-export default mongoose.model('featuredProduct', featuredProductSchema)
+export default mongoose.model('FeaturedProduct', featuredProductSchema)
