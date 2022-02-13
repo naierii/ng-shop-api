@@ -37,6 +37,7 @@ export const getProducts:RequestHandler = async (req, res, next) => {
     res.status(404).json({ message: "Error 404" });
     return
   }
+  console.log(process.env.USERNAME)
 
   res.json({ featureds })
 

@@ -6,6 +6,8 @@ import path from "path";
 import productsRouter from "./routes/products";
 import featuredProductsRouter from "./routes/featuredProducts";
 
+require('dotenv').config()
+
 const app = express();
 
 app.use(json());
@@ -17,12 +19,11 @@ app.use("/products", productsRouter);
 app.use("/featuredProducts", featuredProductsRouter);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.log("a")
   res.status(500).json({ message: err.message });
 });
 
 mongoose
-  .connect('mongodb+srv://reian:M1mor4chi.@cluster0.pn1vx.mongodb.net/ng-shop?retryWrites=true&w=majority')
+  .connect(`mongodb+srv://${process.env.DEV}:${process.env.PASSWORD}@cluster0.pn1vx.mongodb.net/ng-shop?retryWrites=true&w=majority`)
   .then(() => {
     app.listen(process.env.PORT || 5000);
   })
