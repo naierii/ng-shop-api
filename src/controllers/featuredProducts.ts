@@ -5,6 +5,7 @@ import Product from "../models/featuredProduct";
 export const saveProduct:RequestHandler = async (req, res, next) =>{
   const name = (req.body as {name:string}).name
   const price = (req.body as {price:number}).price
+  const prevPrice = (req.body as {prevPrice:number | undefined}).prevPrice
   const description = (req.body as {description:string}).description
   const image = (req.body as {image:string}).image
   
@@ -13,6 +14,7 @@ export const saveProduct:RequestHandler = async (req, res, next) =>{
     price,
     description,
     image,
+    prevPrice
   })
 
   try{

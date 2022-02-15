@@ -9,6 +9,7 @@ const featuredProduct_1 = __importDefault(require("../models/featuredProduct"));
 const saveProduct = async (req, res, next) => {
     const name = req.body.name;
     const price = req.body.price;
+    const prevPrice = req.body.prevPrice;
     const description = req.body.description;
     const image = req.body.image;
     const newProduct = new featuredProduct_1.default({
@@ -16,6 +17,7 @@ const saveProduct = async (req, res, next) => {
         price,
         description,
         image,
+        prevPrice
     });
     try {
         await newProduct.save();

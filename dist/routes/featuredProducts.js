@@ -5,4 +5,6 @@ const featuredProducts_1 = require("../controllers/featuredProducts");
 const featuredProductsRouter = (0, express_1.Router)();
 featuredProductsRouter.post('/', featuredProducts_1.saveProduct);
 featuredProductsRouter.get('/', featuredProducts_1.getProducts);
+featuredProductsRouter.patch('/', function () { });
+featuredProductsRouter.delete('/', function () { });
 exports.default = featuredProductsRouter;

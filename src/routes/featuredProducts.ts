@@ -7,4 +7,8 @@ featuredProductsRouter.post('/', saveProduct)
 
 featuredProductsRouter.get('/', getProducts)
 
+featuredProductsRouter.patch('/', function(){})
+
+featuredProductsRouter.delete('/', function(){})
+
 export default featuredProductsRouter

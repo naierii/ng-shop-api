@@ -6,7 +6,7 @@ const featuredProductSchema = new Schema({
   name: {type: String, required: true},
   description: {type: String, required: true},
   price: {type:Number, required: true},
-  prevPrice: {type:Number || null},
+  prevPrice: {type:Number || undefined, required: true},
   image: {type: String, required: true},
 })
 
