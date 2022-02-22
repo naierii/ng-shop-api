@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getProductById = exports.getProducts = exports.saveProduct = void 0;
-const docToObject_1 = __importDefault(require("../functions/docToObject"));
+// import docToObject from "../functions/docToObject";
 const featuredProduct_1 = __importDefault(require("../models/featuredProduct"));
 const saveProduct = async (req, res, next) => {
     const name = req.body.name;
@@ -42,7 +42,6 @@ const getProducts = async (req, res, next) => {
         res.status(404).json({ message: "Error 404" });
         return;
     }
-    console.log(process.env.USERNAME);
     res.json({ featureds });
 };
 exports.getProducts = getProducts;
@@ -60,6 +59,7 @@ const getProductById = async (req, res, next) => {
         res.status(404).json({ message: "Error 404" });
         return;
     }
-    res.json({ product: (0, docToObject_1.default)(product) });
+    // res.json({ product: docToObject(product) })
+    res.json({ product });
 };
 exports.getProductById = getProductById;

@@ -11,5 +11,6 @@ const featuredProductSchema = new Schema({
     price: { type: Number, required: true },
     prevPrice: { type: Number || undefined, required: true },
     image: { type: String, required: true },
+    sortId: { type: Number }
 });
 exports.default = mongoose_1.default.model('FeaturedProduct', featuredProductSchema);

@@ -3,20 +3,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProductById = exports.getProducts = exports.createProducts = void 0;
-const docToObject_1 = __importDefault(require("../functions/docToObject"));
+exports.getProducts = exports.saveProduct = void 0;
 const product_1 = __importDefault(require("../models/product"));
-const createProducts = async (req, res, next) => {
+const saveProduct = async (req, res, next) => {
     const name = req.body.name;
-    const price = req.body.price;
+    const type = req.body.type;
+    const group = req.body.group;
     const description = req.body.description;
+    const price = req.body.price;
+    const prevPrice = req.body.prevPrice;
     const image = req.body.image;
     const newProduct = new product_1.default({
-        name,
-        price,
-        description,
-        image,
+        name, type, group, description, price, prevPrice, image
     });
+    console.log('controllers');
     try {
         await newProduct.save();
     }
@@ -26,37 +26,20 @@ const createProducts = async (req, res, next) => {
     }
     res.status(201).json({ message: "created a product", createdProduct: newProduct });
 };
-exports.createProducts = createProducts;
+exports.saveProduct = saveProduct;
 const getProducts = async (req, res, next) => {
-    let product;
+    let products;
     try {
-        product = await product_1.default.find();
+        products = await product_1.default.find();
     }
-    catch (err) {
-        res.status(500).json({ message: err.message });
+    catch (e) {
+        res.status(500).json({ message: e.message });
         return;
     }
-    if (!product) {
+    if (!products) {
         res.status(404).json({ message: "Error 404" });
         return;
     }
-    res.json({ product });
+    res.json({ products });
 };
 exports.getProducts = getProducts;
-const getProductById = async (req, res, next) => {
-    const id = req.params.id;
-    let product;
-    try {
-        product = await product_1.default.findById(id);
-    }
-    catch (err) {
-        res.status(500).json({ message: err.message });
-        return;
-    }
-    if (!product) {
-        res.status(404).json({ message: "Error 404" });
-        return;
-    }
-    res.json({ product: (0, docToObject_1.default)(product) });
-};
-exports.getProductById = getProductById;

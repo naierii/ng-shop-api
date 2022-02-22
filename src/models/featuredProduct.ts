@@ -8,6 +8,7 @@ const featuredProductSchema = new Schema({
   price: {type:Number, required: true},
   prevPrice: {type:Number || undefined, required: true},
   image: {type: String, required: true},
+  sortId: {type: Number}
 })
 
 export default mongoose.model('FeaturedProduct', featuredProductSchema)

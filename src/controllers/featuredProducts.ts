@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import docToObject from "../functions/docToObject";
+// import docToObject from "../functions/docToObject";
 import Product from "../models/featuredProduct";
 
 export const saveProduct:RequestHandler = async (req, res, next) =>{
@@ -39,7 +39,6 @@ export const getProducts:RequestHandler = async (req, res, next) => {
     res.status(404).json({ message: "Error 404" });
     return
   }
-  console.log(process.env.USERNAME)
 
   res.json({ featureds })
 
@@ -61,6 +60,7 @@ export const getProductById:RequestHandler = async (req, res, next) => {
     return
   }
 
-  res.json({ product: docToObject(product) })
+  // res.json({ product: docToObject(product) })
+  res.json({ product })
 
 }

@@ -7,14 +7,16 @@ const express_1 = __importDefault(require("express"));
 const body_parser_1 = require("body-parser");
 const mongoose_1 = __importDefault(require("mongoose"));
 const path_1 = __importDefault(require("path"));
-const featuredProducts_1 = __importDefault(require("./routes/featuredProducts"));
+// import featuredProductsRouter from "./routes/featuredProducts";
+const products_1 = __importDefault(require("./routes/products"));
 require('dotenv').config();
 const app = (0, express_1.default)();
 app.use((0, body_parser_1.json)());
 app.use('/uploads/images', express_1.default.static(path_1.default.join('uploads', 'images')));
-app.use("/featuredproducts", featuredProducts_1.default);
+app.use("/products", products_1.default);
+// app.use("/featuredproducts", featuredProductsRouter);
 app.use((err, req, res, next) => {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ err });
 });
 mongoose_1.default
     .connect(`mongodb+srv://${process.env.DEV}:${process.env.PASSWORD}@cluster0.pn1vx.mongodb.net/ng-shop?retryWrites=true&w=majority`)

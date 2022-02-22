@@ -3,7 +3,8 @@ import { json } from "body-parser";
 import mongoose from "mongoose";
 import path from "path";
 
-import featuredProductsRouter from "./routes/featuredProducts";
+// import featuredProductsRouter from "./routes/featuredProducts";
+import productsRouter from "./routes/products";
 
 require('dotenv').config()
 
@@ -13,10 +14,12 @@ app.use(json());
 
 app.use('/uploads/images', express.static(path.join('uploads', 'images')))
 
-app.use("/featuredproducts", featuredProductsRouter);
+app.use("/products", productsRouter)
+
+// app.use("/featuredproducts", featuredProductsRouter);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  res.status(500).json({ message: err.message });
+  res.status(500).json({ err });
 });
 
 mongoose
