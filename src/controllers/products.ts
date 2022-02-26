@@ -14,13 +14,12 @@ export const saveProduct: RequestHandler = async (req, res, next) => {
   const newProduct = new Product({
     name, type, group, description, price, prevPrice, image
   })
-  console.log('controllers')
 
   try{
     await newProduct.save()
   }catch(err: any){
     res.status(500).json({message: err.message})
-    return
+    process.exit()
   }
   res.status(201).json({message: "created a product", createdProduct: newProduct})
 }

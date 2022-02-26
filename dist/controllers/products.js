@@ -16,13 +16,12 @@ const saveProduct = async (req, res, next) => {
     const newProduct = new product_1.default({
         name, type, group, description, price, prevPrice, image
     });
-    console.log('controllers');
     try {
         await newProduct.save();
     }
     catch (err) {
         res.status(500).json({ message: err.message });
-        return;
+        process.exit();
     }
     res.status(201).json({ message: "created a product", createdProduct: newProduct });
 };

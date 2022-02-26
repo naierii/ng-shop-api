@@ -9,11 +9,13 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const path_1 = __importDefault(require("path"));
 // import featuredProductsRouter from "./routes/featuredProducts";
 const products_1 = __importDefault(require("./routes/products"));
+const inventory_1 = __importDefault(require("./routes/inventory"));
 require('dotenv').config();
 const app = (0, express_1.default)();
 app.use((0, body_parser_1.json)());
 app.use('/uploads/images', express_1.default.static(path_1.default.join('uploads', 'images')));
 app.use("/products", products_1.default);
+app.use('/inventory', inventory_1.default);
 // app.use("/featuredproducts", featuredProductsRouter);
 app.use((err, req, res, next) => {
     res.status(500).json({ err });

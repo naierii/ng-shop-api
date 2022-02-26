@@ -5,6 +5,7 @@ import path from "path";
 
 // import featuredProductsRouter from "./routes/featuredProducts";
 import productsRouter from "./routes/products";
+import inventoryRouter from "./routes/inventory";
 
 require('dotenv').config()
 
@@ -15,6 +16,8 @@ app.use(json());
 app.use('/uploads/images', express.static(path.join('uploads', 'images')))
 
 app.use("/products", productsRouter)
+
+app.use('/inventory', inventoryRouter)
 
 // app.use("/featuredproducts", featuredProductsRouter);
 

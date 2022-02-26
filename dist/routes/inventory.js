@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const inventory_1 = require("../controllers/inventory");
+const inventoryRouter = (0, express_1.Router)();
+inventoryRouter.post("/", inventory_1.addItem);
+inventoryRouter.get("/", () => { });
+inventoryRouter.patch("/", () => { });
+inventoryRouter.delete("/", () => { });
+exports.default = inventoryRouter;
