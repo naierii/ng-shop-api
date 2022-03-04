@@ -6,6 +6,8 @@ import path from "path";
 // import featuredProductsRouter from "./routes/featuredProducts";
 import productsRouter from "./routes/products";
 import inventoryRouter from "./routes/inventory";
+import customerRouter from "./routes/customer";
+import HttpError from "./models/http-error";
 
 require('dotenv').config()
 
@@ -15,14 +17,24 @@ app.use(json());
 
 app.use('/uploads/images', express.static(path.join('uploads', 'images')))
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', "*")
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE')
+
+  next()
+})
+
 app.use("/products", productsRouter)
 
 app.use('/inventory', inventoryRouter)
 
+app.use('/customer', customerRouter)
+
 // app.use("/featuredproducts", featuredProductsRouter);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  res.status(500).json({ err });
+  res.status(500).json({ err, });
 });
 
 mongoose

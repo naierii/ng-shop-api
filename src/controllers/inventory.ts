@@ -23,6 +23,19 @@ export const addItem: RequestHandler = async (req, res, next) => {
   res.status(201).json({message: "Created new item", createdItem: newItem})
 }
 
-export const getProducts: RequestHandler = async (req, res, next) => {
+export const getItems: RequestHandler = async (req, res, next) => {
+  let products;
+  try{
+    products = await Inventory.find()
+  }catch(e){
+    res.status(500).json(e)
+    process.exit()
+  }
 
+  if(!products){
+    res.status(404).json({message: "Error 404"})
+    process.exit()
+  }
+
+  res.json({products})
 }

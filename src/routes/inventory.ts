@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { addItem } from "../controllers/inventory";
+import { addItem, getItems } from "../controllers/inventory";
 
 const inventoryRouter = Router();
 
 inventoryRouter.post("/", addItem)
 
-inventoryRouter.get("/", ()=>{})
+inventoryRouter.get("/", getItems)
 
 inventoryRouter.patch("/", ()=>{})
 
