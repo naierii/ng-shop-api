@@ -23,6 +23,6 @@ customerRouter.post(
     check('password').not().isEmpty(),
   ], 
   loginCustomer
-)
+) 
 
 export default customerRouter
